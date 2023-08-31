@@ -8,14 +8,19 @@ const loadData = async () => {
   //   console.log(phTubeData);
   const tabContainer = document.querySelector("#tab-container");
   phTubeData.forEach((category) => {
-    console.log(category);
+    // console.log(category);
     const div = document.createElement("div");
     div.innerHTML = `
-    <a class="tab text-base font-medium w-[104px] bg-[#25252526] rounded"
+    <a onclick = "handelLoad('${category.category_id}')" class="tab text-base font-medium w-[104px] bg-[#25252526] rounded"
           >${category.category}</a
         >
     `;
     tabContainer.appendChild(div);
   });
 };
+
+const handelLoad = (categoryId) => {
+  console.log(categoryId);
+};
+
 loadData();
