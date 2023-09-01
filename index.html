@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- shared fonts styles -->
     <style>
       .font-inter {
         font-family: "Inter", sans-serif;
@@ -34,7 +35,10 @@
             <img src="./resource/Logo.png" alt="" />
           </div>
           <div class="navbar-center hidden lg:flex">
-            <button class="btn bg-[#25252533] text-lg font-medium">
+            <button
+              onclick="handleSortByView()"
+              class="btn bg-[#25252533] text-lg font-medium"
+            >
               Sort by view
             </button>
           </div>
@@ -53,17 +57,21 @@
     </header>
     <!-- header end here -->
     <main class="container mx-auto p-5 my-10">
+      <!-- tab container starts here -->
       <div
         id="tab-container"
         class="tabs flex justify-center items-center gap-5"
       ></div>
+      <!-- tab container end here -->
 
       <!-- card container starts here -->
       <div
         id="card-container"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-11"
       ></div>
+      <!-- card container end here -->
 
+      <!-- no content container from heres -->
       <div id="no-content-container" class=""></div>
     </main>
     <script src="./js/index.js"></script>
