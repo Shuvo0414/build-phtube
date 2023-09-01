@@ -1,10 +1,17 @@
 // console.log("all okh");
+function blogPage() {
+  //   console.log("click");
+  document.querySelector("#blog-btn");
+  window.open("blog.html", "_blank");
+}
+
 const loadData = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/videos/categories"
   );
   const data = await res.json();
   const phTubeData = data.data;
+
   //   console.log(phTubeData);
   const tabContainer = document.querySelector("#tab-container");
   phTubeData.forEach((category) => {
