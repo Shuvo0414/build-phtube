@@ -130,9 +130,9 @@ const handleSortByView = async () => {
   const getData = data.data;
   //   console.log(getData);
   const AllViews = [];
-  getData.forEach((getall) => {
-    // console.log(getall.others.views);
-    const getAllViewaString = getall.others.views;
+  getData.forEach((getAllViewsData) => {
+    // console.log(getAllViewsData.others.views);
+    const getAllViewaString = getAllViewsData.others.views;
     const getAllViews = parseInt(getAllViewaString);
     AllViews.push(getAllViews);
     // console.log(getAllViews);
