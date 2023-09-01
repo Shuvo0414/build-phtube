@@ -56,7 +56,7 @@ const handelLoad = async (categoryId) => {
       }
       // console.log(`Posted: ${postDateConvertHourToMIn}`);
       div.innerHTML = `
-      <div class="card  bg-base-100 shadow-xl">
+      <div class="card  bg-base-100 ">
             <figure>
               <img class ="w-[312px] h-[200px] rounded-lg relative"
                 src=${cardInfo?.thumbnail}
@@ -162,7 +162,7 @@ const handleSortByView = async () => {
       }
 
       div.innerHTML = `
-          <div class="card  bg-base-100 shadow-xl">
+          <div class="card  bg-base-100 ">
             <figure>
               <img class="w-[312px] h-[200px] rounded-lg relative" src=${
                 cardInfo?.thumbnail
