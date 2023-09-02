@@ -28,6 +28,8 @@ const loadData = async () => {
 
 const handelLoad = async (categoryId) => {
   //   console.log(categoryId);
+  allCategoryId = categoryId;
+  // console.log(allCategoryId);
   const res = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${categoryId}`
   );
@@ -120,48 +122,49 @@ const handelLoad = async (categoryId) => {
     cardContainer.appendChild(noContentDiv);
   }
 };
-
+let allCategoryId = "";
 const handleSortByView = async () => {
-  const response = await fetch(
-    "https://openapi.programming-hero.com/api/videos/category/1000"
-  );
-  const data = await response.json();
-  //   console.log("click", data);
-  const getData = data.data;
-  //   console.log(getData);
-  const AllViews = [];
-  getData.forEach((getAllViewsData) => {
-    // console.log(getAllViewsData.others.views);
-    const getAllViewaString = getAllViewsData.others.views;
-    const getAllViews = parseInt(getAllViewaString);
-    AllViews.push(getAllViews);
-    // console.log(getAllViews);
-  });
-  AllViews.sort((a, b) => b - a);
-  //   console.log(AllViews);
+  if (allCategoryId) {
+    const response = await fetch(
+      `https://openapi.programming-hero.com/api/videos/category/${allCategoryId}`
+    );
+    const data = await response.json();
+    //   console.log("click", data);
+    const getData = data.data;
+    //   console.log(getData);
+    const AllViews = [];
+    getData.forEach((getAllViewsData) => {
+      // console.log(getAllViewsData.others.views);
+      const getAllViewaString = getAllViewsData.others.views;
+      const getAllViews = parseInt(getAllViewaString);
+      AllViews.push(getAllViews);
+      // console.log(getAllViews);
+    });
+    AllViews.sort((a, b) => b - a);
+    //   console.log(AllViews);
 
-  const cardContainer = document.querySelector("#card-container");
-  cardContainer.textContent = "";
+    const cardContainer = document.querySelector("#card-container");
+    cardContainer.textContent = "";
 
-  AllViews.forEach((views) => {
-    const cardInfo = getData.find((i) => parseInt(i.others.views) === views);
-    // console.log(cardInfo);
-    if (cardInfo) {
-      const div = document.createElement("div");
-      const postDateString = cardInfo.others.posted_date;
+    AllViews.forEach((views) => {
+      const cardInfo = getData.find((i) => parseInt(i.others.views) === views);
+      // console.log(cardInfo);
+      if (cardInfo) {
+        const div = document.createElement("div");
+        const postDateString = cardInfo.others.posted_date;
 
-      let postDateConvertHourToMIn = "";
-      if (postDateString) {
-        const postDate = parseInt(postDateString);
-        const hours = Math.floor(postDate / 3600);
-        const remainingSeconds = postDate % 3600;
-        const minutes = Math.floor(remainingSeconds / 60);
-        postDateConvertHourToMIn = `${hours > 0 ? hours + "hrs" : ""} ${
-          minutes > 0 ? minutes + " min" : ""
-        } ago`;
-      }
+        let postDateConvertHourToMIn = "";
+        if (postDateString) {
+          const postDate = parseInt(postDateString);
+          const hours = Math.floor(postDate / 3600);
+          const remainingSeconds = postDate % 3600;
+          const minutes = Math.floor(remainingSeconds / 60);
+          postDateConvertHourToMIn = `${hours > 0 ? hours + "hrs" : ""} ${
+            minutes > 0 ? minutes + " min" : ""
+          } ago`;
+        }
 
-      div.innerHTML = `
+        div.innerHTML = `
           <div class="card  bg-base-100 ">
             <figure>
               <img class="w-[312px] h-[200px] rounded-lg relative" src=${
@@ -212,9 +215,10 @@ const handleSortByView = async () => {
             </div>
           </div>
         `;
-      cardContainer.appendChild(div);
-    }
-  });
+        cardContainer.appendChild(div);
+      }
+    });
+  }
 };
 loadData();
 handelLoad("1000");
